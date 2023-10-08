@@ -21,10 +21,6 @@ const EventForm: React.FC = () => {
 
   const handleDateTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newDateTime = new Date(e.target.value);
-    let currentDataMock = new Date();
-    console.log(currentDataMock);
-    console.log(newDateTime);
-    console.log(e.target.value);
     setDateTime(newDateTime);
   };
 
