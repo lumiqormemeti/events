@@ -1,48 +1,47 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import EventCard from './EventCard';
 import Navbar from '../Layout/Navbar';
+import axios from 'axios';
 
-const eventDataList = [
-  {
-    imageUrl: 'https://via.placeholder.com/300',
-    title: 'Awesome Event',
-    time: '2:00 PM - 5:00 PM',
-    date: 'October 15, 2023',
-  },
-  {
-    imageUrl: 'https://via.placeholder.com/300',
-    title: 'Awesome Event',
-    time: '2:00 PM - 5:00 PM',
-    date: 'October 15, 2023',
-  },
-  {
-    imageUrl: 'https://via.placeholder.com/300',
-    title: 'Awesome Event',
-    time: '2:00 PM - 5:00 PM',
-    date: 'October 15, 2023',
-  },
-  {
-    imageUrl: 'https://via.placeholder.com/300',
-    title: 'Awesome Event',
-    time: '2:00 PM - 5:00 PM',
-    date: 'October 15, 2023',
-  },
-];
+interface Event {
+  image: string;
+  title: string;
+  time: string;
+  date?: Date;
+  _id: string;
+}
 
 const EventList: FC = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/events');
+        setEvents(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(events);
+
   return (
     <>
       <Navbar />
 
       <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-24">
-          {eventDataList.map((eventData, index) => (
+          {events.map((data: Event) => (
             <EventCard
-              key={index}
-              imageUrl={eventData.imageUrl}
-              title={eventData.title}
-              time={eventData.time}
-              date={eventData.date}
+              key={data._id}
+              imageUrl={data.image}
+              title={data.title}
+              time={data.time}
+              date={data.date}
             />
           ))}
         </div>

@@ -23,6 +23,7 @@ app.use(
 app.get("/test", (req, res) => {
   res.json("Success!");
 });
-app.use("/events", eventRoutes);
+
+app.use("/api/events", eventRoutes);
 
 app.listen(port, () => console.log("SERVER STARTED PORT 3001!"));
