@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Layout/Navbar';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const EventForm: React.FC = () => {
   const [title, setTitle] = useState('My Event');
   const [dateTime, setDateTime] = useState(new Date());
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [cookies] = useCookies();
+  const nav = useNavigate();
+  useEffect(() => {
+    if (!cookies?.adminAccessToken) nav('/');
+  }, []);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -14,6 +21,10 @@ const EventForm: React.FC = () => {
 
   const handleDateTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newDateTime = new Date(e.target.value);
+    let currentDataMock = new Date();
+    console.log(currentDataMock);
+    console.log(newDateTime);
+    console.log(e.target.value);
     setDateTime(newDateTime);
   };
 
@@ -37,14 +48,14 @@ const EventForm: React.FC = () => {
       image: imageUrl,
     };
 
-    axios
-      .post('http://localhost:3001/api/events/create', eventData)
-      .then((response) => {
-        console.log('Event created successfully:', response.data);
-      })
-      .catch((error) => {
-        console.error('Error creating event:', error);
-      });
+    // axios
+    //   .post('http://localhost:3001/api/events/create', eventData)
+    //   .then((response) => {
+    //     console.log('Event created successfully:', response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error creating event:', error);
+    //   });
   };
 
   return (

@@ -3,11 +3,11 @@ import Home from '../components/Home/HomePage';
 import EventList from '../components/Events/EventList';
 import EventForm from '../components/Events/EventForm';
 import EventDetails from '../components/Events/EventDetails';
-
+import Login from '../components/Login/index';
 export const routes = createBrowserRouter([
   {
     path: '',
-    element: <Home />,
+    element: <Login />,
   },
   {
     path: '/events',

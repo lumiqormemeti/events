@@ -5,6 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const port = process.env.PORT || 3001;
 const eventRoutes = require("./routes/eventRoutes");
+const userRoutes = require("./routes/userRoutes");
 const connectDB = require("./config/db");
 
 connectDB();
@@ -25,5 +26,6 @@ app.get("/test", (req, res) => {
 });
 
 app.use("/api/events", eventRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => console.log("SERVER STARTED PORT 3001!"));

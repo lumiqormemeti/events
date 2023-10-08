@@ -3,7 +3,6 @@ import React from 'react';
 interface EventCardProps {
   imageUrl: string;
   title: string;
-  time: string;
   date: string;
   description: string;
   id: string;

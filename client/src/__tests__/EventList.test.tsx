@@ -6,7 +6,7 @@ import { render, waitFor, screen } from '@testing-library/react';
 
 import axios from 'axios';
 import { MemoryRouter } from 'react-router-dom';
-import EventList from './components/Events/EventList';
+import EventList from '../components/Events/EventList';
 
 jest.mock('axios');
 
@@ -32,10 +32,8 @@ describe('EventList Component', () => {
       </MemoryRouter>
     );
 
-    // Wait for events to load
     await waitFor(() => screen.getByText('Event 1'));
 
-    // Check if EventCard is rendered for each event
     mockEvents.forEach((event) => {
       expect(screen.getByText(event.title)).toBeInTheDocument();
     });
