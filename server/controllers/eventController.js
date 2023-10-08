@@ -5,14 +5,19 @@ const getEvents = async (req, res) => {
 
   res.status(200).json(data);
 };
+const getUpcomingEvents = async (req, res) => {
+  const data = await Event.find({ date: { $gt: new Date() } });
+
+  res.status(200).json(data);
+};
+const getPastEvents = async (req, res) => {
+  const data = await Event.find({ date: { $lt: new Date() } });
+
+  res.status(200).json(data);
+};
 
 const createEvent = async (req, res) => {
   const { title, description, date, image } = req.body;
-
-  if (!title || !description || !date || !image) {
-    res.status(400);
-    throw new Error("Please add all fields");
-  }
 
   const data = await Event.create({
     title,
@@ -27,4 +32,6 @@ const createEvent = async (req, res) => {
 module.exports = {
   getEvents,
   createEvent,
+  getPastEvents,
+  getUpcomingEvents,
 };

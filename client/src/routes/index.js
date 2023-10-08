@@ -11,6 +11,12 @@ export const routes = createBrowserRouter([
   {
     path: '/events',
     element: <EventList />,
+    children: [
+      {
+        path: '/events/:param',
+        element: <EventList />,
+      },
+    ],
   },
   {
     path: '/create',

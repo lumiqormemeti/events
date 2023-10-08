@@ -10,25 +10,18 @@ const Navbar: React.FC = () => {
         </div>
         <div className="hidden md:flex flex-grow justify-center">
           <NavLink
-            to="/"
+            to="/events"
             activeClassName="text-yellow-500"
             className="text-white mr-4"
           >
-            Home
+            Events
           </NavLink>
           <NavLink
             to="/create"
             activeClassName="text-yellow-500"
             className="text-white mr-4"
           >
-            About
-          </NavLink>
-          <NavLink
-            to="/events"
-            activeClassName="text-yellow-500"
-            className="text-white"
-          >
-            Contact
+            Create
           </NavLink>
         </div>
       </div>

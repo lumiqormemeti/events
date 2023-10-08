@@ -8,12 +8,14 @@ const eventSchema = mongoose.Schema(
     },
     description: {
       type: String,
+      required: [true, "Please add event description"],
     },
     image: {
       type: String,
     },
-    time: {
-      type: String,
+    date: {
+      type: Date,
+      required: [true, "Please add event date"],
     },
   },
   { timestamps: true }
