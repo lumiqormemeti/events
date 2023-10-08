@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '../components/Home/HomePage';
 import EventList from '../components/Events/EventList';
 import EventForm from '../components/Events/EventForm';
+import EventDetails from '../components/Events/EventDetails';
 
 export const routes = createBrowserRouter([
   {
@@ -19,9 +20,14 @@ export const routes = createBrowserRouter([
     ],
   },
   {
+    path: '/event/:id',
+    element: <EventDetails />,
+  },
+  {
     path: '/create',
     element: <EventForm />,
   },
+
   {
     path: '/*',
     element: <h1>Page Not Found</h1>,

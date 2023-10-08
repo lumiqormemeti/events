@@ -6,6 +6,7 @@ interface EventCardProps {
   time: string;
   date: string;
   description: string;
+  id: string;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -13,6 +14,7 @@ const EventCard: React.FC<EventCardProps> = ({
   title,
   date,
   description,
+  id,
 }) => {
   return (
     <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
@@ -22,7 +24,7 @@ const EventCard: React.FC<EventCardProps> = ({
         </a>
       )}
       <div className="p-5">
-        <a href="#">
+        <a href={'/event/' + id}>
           <h5 className="text-gray-900 font-bold text-2xl tracking-tight mb-2 dark:text-white">
             {title}
           </h5>

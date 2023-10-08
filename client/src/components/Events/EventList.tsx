@@ -66,6 +66,7 @@ const EventList: FC = () => {
               title={data.title}
               date={data.date ? moment(data.date).format('MM/DD/YYYY') : ''}
               description={data.description}
+              id={data._id}
             />
           ))}
         </div>
