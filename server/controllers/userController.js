@@ -4,8 +4,9 @@ const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const User = require("../models/userModal");
 
+
 const createToken = (id, email) => {
-  return jwt.sign({ id, email }, process.env.JWT_SECRET, {
+  return jwt.sign({ id, email }, "k6LIk9ohI5-wDB9mvhqcUc4-mqL0htELOpz0_RF0f3jlYlH8FFHIjcI4iQ7TzhddK8dXOgJx-xNuM5nsLHQEhQACF8cVq-hQR96VDLOiioPqKdfXOgUW3dOIyPAZ6BSTETUUy0ROPm02r7HsL7O3p8eoAdlR48zN2ozT4XbXHOfdGmX-dHQ6xCTLyfd9vFY4glllLhrxfhuXLUjuSNup487tUGTBJu_FpN4Zy7haFR3XgY5ltv0FkF4V9Nv1UeCmXv37eUXS0COstQEr9UpQBIi00KzgqPbDBVqqsF_0mhl8B66uKzpSxQDu5jfqK_LbbxAIMq8Kv1HHs3inSnpS7Q  ", {
     expiresIn: "30d",
   });
 };
@@ -79,6 +80,7 @@ const loginUser = asyncHandler(async (req, res) => {
         // maxAge: 60 * 60 * 24 * 30 * 1000,
         //TODO: Adjust this back (its 10 min atm)
         maxAge: 1200000,
+        httpOnly:true
       })
       .json({
         id: user._id,

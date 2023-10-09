@@ -18,9 +18,7 @@ const EventCard: React.FC<EventCardProps> = ({
   return (
     <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
       {imageUrl && (
-        <a href="#">
-          <img className="rounded-t-lg" src={imageUrl} alt={title} />
-        </a>
+        <img className="rounded-t-lg h-56 " src={imageUrl} alt={title} />
       )}
       <div className="p-5">
         <a href={'/event/' + id}>

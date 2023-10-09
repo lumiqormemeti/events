@@ -21,6 +21,7 @@ const EventForm: React.FC = () => {
 
   const handleDateTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newDateTime = new Date(e.target.value);
+    console.log(newDateTime);
     setDateTime(newDateTime);
   };
 
@@ -44,14 +45,15 @@ const EventForm: React.FC = () => {
       image: imageUrl,
     };
 
-    // axios
-    //   .post('http://localhost:3001/api/events/create', eventData)
-    //   .then((response) => {
-    //     console.log('Event created successfully:', response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error creating event:', error);
-    //   });
+    axios
+      .post('http://localhost:3001/api/events/create', eventData)
+      .then((response) => {
+        console.log('Event created successfully:', response.data);
+        nav('/events');
+      })
+      .catch((error) => {
+        console.error('Error creating event:', error);
+      });
   };
 
   return (
