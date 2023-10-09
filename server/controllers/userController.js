@@ -80,7 +80,6 @@ const loginUser = asyncHandler(async (req, res) => {
         // maxAge: 60 * 60 * 24 * 30 * 1000,
         //TODO: Adjust this back (its 10 min atm)
         maxAge: 1200000,
-        httpOnly:true
       })
       .json({
         id: user._id,

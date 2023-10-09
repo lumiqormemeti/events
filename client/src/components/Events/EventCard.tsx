@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface EventCardProps {
   imageUrl: string;
@@ -6,6 +7,7 @@ interface EventCardProps {
   date: string;
   description: string;
   id: string;
+  setDelete?: () => void;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -14,7 +16,9 @@ const EventCard: React.FC<EventCardProps> = ({
   date,
   description,
   id,
+  setDelete,
 }) => {
+  const nav = useNavigate();
   return (
     <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
       {imageUrl && (
@@ -32,6 +36,21 @@ const EventCard: React.FC<EventCardProps> = ({
         <div className="flex justify-between mb-3">
           <span className="text-sm text-gray-500 dark:text-gray-300">
             Date: {date}
+          </span>
+        </div>
+        <div className="flex gap-10 mb-3">
+          <span
+            className="text-sm text-gray-500 text-red-500"
+            onClick={setDelete}
+          >
+            Delete
+          </span>
+
+          <span
+            className="text-sm text-gray-500 text-red-500"
+            onClick={() => nav(`/event/edit/${id}`)}
+          >
+            Update
           </span>
         </div>
       </div>

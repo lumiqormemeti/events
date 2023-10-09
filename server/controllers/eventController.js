@@ -35,10 +35,20 @@ const createEvent = async (req, res) => {
   res.status(200).json(data);
 };
 
+const deleteEvent = async (req,res)=>{
+  const { id } = req.params;
+  const data=await Event.deleteOne({_id:id})
+
+
+  const updatedData = await Event.find({});
+  res.json(updatedData)
+}
+
 module.exports = {
   getEvents,
   createEvent,
   getPastEvents,
   getUpcomingEvents,
   getEventById,
+  deleteEvent
 };

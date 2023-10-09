@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Layout/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const EventForm: React.FC = () => {
@@ -11,17 +11,34 @@ const EventForm: React.FC = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [cookies] = useCookies();
   const nav = useNavigate();
+  const params = useParams();
   useEffect(() => {
     if (!cookies?.adminAccessToken) nav('/');
-  }, []);
+    if (!params.id) return;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/api/events/${params.id}`
+        );
 
+        console.log('HERE');
+        setTitle(response.data.title);
+        setDateTime(new Date(response.data.date));
+        setDescription(response.data.description);
+        setImageUrl(response.data.image);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
   const handleDateTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newDateTime = new Date(e.target.value);
-    console.log(newDateTime);
     setDateTime(newDateTime);
   };
 

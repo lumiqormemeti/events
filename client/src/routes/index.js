@@ -20,9 +20,14 @@ export const routes = createBrowserRouter([
     ],
   },
   {
+    path: '/event/edit/:id',
+    element: <EventForm />,
+  },
+  {
     path: '/event/:id',
     element: <EventDetails />,
   },
+ 
   {
     path: '/create',
     element: <EventForm />,

@@ -12,6 +12,8 @@ const eventSchema = mongoose.Schema(
     },
     image: {
       type: String,
+      required: [true, "Please add event description"],
+
     },
     date: {
       type: Date,
