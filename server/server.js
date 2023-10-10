@@ -28,4 +28,4 @@ app.get("/test", (req, res) => {
 app.use("/api/events", eventRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(port, () => console.log("SERVER STARTED PORT 3001!"));
+app.listen(port, () => console.log(`SERVER STARTED PORT AT PORT:${port}` ));
