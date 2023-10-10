@@ -35,7 +35,7 @@ const Login: React.FC = () => {
           withCredentials: true,
         }
       );
-      nav('/events');
+      // nav('/events');
     } catch (error) {
       setLoading(false);
       console.error('Login failed:', error);
